@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-
 import userEvent from '@testing-library/user-event';
 import { Pokemon } from '../components';
 import renderWithRouter from '../renderWithRouter';
