@@ -25,7 +25,7 @@ test('Pokemon detailed informations are rendered', async () => {
 });
 
 test('There is a location and maps section', () => {
-  renderWithRouter(<App />, { route: '/pokemon/1' });
+  renderWithRouter(<App />, { route: '/pokemon/25' });
 
   expect(screen.getByRole('heading', { name: /game locations of pikachu/i }))
     .toBeInTheDocument();
@@ -46,7 +46,8 @@ test('There is a location and maps section', () => {
 });
 
 test('Favorite button is working properly', async () => {
-  const { user: userActions } = renderWithRouter(<App />, { route: '/pokemon/1' });
+  // Precisei alterar o id do pokemon pra poder corrigir o erro de 1 pra 25;
+  const { user: userActions } = renderWithRouter(<App />, { route: '/pokemon/25' });
 
   // Espiona a função 'getFavoritePokemonList' do módulo 'mocks'
   const mocked = vi.spyOn(mocks, 'getFavoritePokemonList');
@@ -64,11 +65,11 @@ test('Favorite button is working properly', async () => {
   expect(mocked).toHaveBeenCalled();
 
   // Verifica se o Pokémon foi marcado como favorito na lista retornada pela função espionada
-  expect(mocked.mock.results[0].value[1]).toBeTruthy();
+  expect(mocked.mock.results[0].value[25]).toBeTruthy();
 
   // Simula o clique novamente no checkbox para desmarcar o Pokémon como favorito
   await userActions.click(checkbox);
 
   // Verifica se o Pokémon foi desmarcado como favorito na lista retornada pela função espionada
-  expect(mocked.mock.results[3].value[1]).toBeFalsy();
+  expect(mocked.mock.results[3].value[25]).toBeFalsy();
 });
